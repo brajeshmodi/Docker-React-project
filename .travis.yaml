@@ -2,9 +2,8 @@ sudo: required
 services:
   - docker
 
-before_install:
-  -  sudo gem install bundler   
-  -  rake spec   
+before_install: sudo gem install bundler   
+     
   - docker build -t brajeshmodi/Docker-React-image -f Dockerfile.deb .
 
 script:
