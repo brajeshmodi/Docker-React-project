@@ -3,6 +3,22 @@ services:
   - docker
 
 before_install:
+  -  sudo gem install bundler   
+  -  rake spec   
   - docker build -t brajeshmodi/Docker-React-image -f Dockerfile.deb .
+
 script:
-  - docker run brajeshmodi/Docker-React-image npm run test -- --coverage       
+  - docker run brajeshmodi/Docker-React-image npm run test -- --coverage
+
+deploy: 
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "Docker-React-Proj"
+  env: "DockerRactProj-env"
+  bucket_name: "elasticbeanstalk-us-east-2-155172243047"
+  bucket_path: "Docker_React-Proj"
+  on:
+   branch: master      
+  access_key_id: $AWS_Access_key_ID 
+  secret_access_id: 
+     secure: $AWS_Secret_Access_Key        
