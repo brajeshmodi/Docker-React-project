@@ -1,0 +1,22 @@
+#creating base image alpine
+FROM node:alpine
+
+#Creating workspace for working directory
+WORKDIR '/app'
+
+#copying package.json file into current working container
+COPY package.json .
+
+#Instaling neccessary packages
+RUN npm install -g npm@latest
+
+#copying currently al file into container
+COPY . .
+
+#exposing container for the world
+
+
+#Running Default command
+CMD ["npm", "run", "start"]
+
+
